@@ -21,7 +21,7 @@ const interventionsSchema = new mongoose.Schema({
     itemsUsed: [itemSchema],
     interventionDate: { type: String },
     interventionType: { type: String, enum: ["Fisico", "Remoto"] },
-    duration: { type: Number }
+    duration: { type: Number },
 }, { collection: "interventions", timestamps: true })
 
 // Schema per i contratti
@@ -46,7 +46,7 @@ const contractHwSchema = new mongoose.Schema({
     lastModified: { type: String },
     interventions: [interventionsSchema],
     interventionsCount: { type: Number, default: 0 },
-    interventionsHoursCount: { type: Number, default: 0 },
+    interventionsMinsCount: { type: Number, default: 0 },
     contractType: { type: String, enum: ["Mini", "Standard", "Plus", "Silver", "Gold"] }
 }, { collection: "ContractsHw", timestamps: true })
 

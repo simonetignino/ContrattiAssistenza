@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getContract, createIntervention } from "../services/api";
+import { getContract, createIntervention, updateIntervention, updateContract } from "../services/api";
 
 export default function CreateInterventionsHw() {
     const [intervention, setIntervention] = useState({
@@ -11,10 +11,12 @@ export default function CreateInterventionsHw() {
         carriedBy: '',
         insertBy: '',
         notes: '',
-        itemsUsed: '',
+        itemsUsed: [],
         interventionDate: '',
         interventionType: '',
-        duration: '',
+        durationH: 0,
+        durationM: 0,
+        duration: 0
     });
     
     const [contractData, setContractData] = useState([]);
@@ -50,26 +52,24 @@ export default function CreateInterventionsHw() {
         const { name, value } = e.target;
         setIntervention(prev => ({
             ...prev,
-            [name]: value
+            [name]: name === 'durationH' || name === 'durationM' ? Number(value) : value
         }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
+        try { 
             // Convertiamo la durata in numero e formatta itemsUsed come array
+            const totalMinutes = (Number(intervention.durationH) * 60) + Number(intervention.durationM);
+
             const formattedIntervention = {
                 ...intervention,
-                duration: Number(intervention.duration),
-                itemsUsed: intervention.itemsUsed ? intervention.itemsUsed.split(',').map(item => item.trim()) : []
+                duration: totalMinutes,  // Usiamo i minuti totali
             };
-
             console.log('URL della richiesta:', `/contracts-hw/${id}/interventions`);
             console.log('Dati intervento formattati:', formattedIntervention);
-            
-            const response = await createIntervention(id, formattedIntervention);
-            contractData.interventionsCount++; 
-            console.log('Risposta API:', response);
+            await createIntervention(id, formattedIntervention);
+            // await updateContract(id, updatedContractData);     
             navigate(`/contracts-hw/${id}/interventions`);
         } catch (error) {
             console.error("Errore completo:", error);
@@ -200,14 +200,23 @@ export default function CreateInterventionsHw() {
                         </select>
                     </div>
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Durata (ore)</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Ore</label>
                         <input
                             type="number"
-                            name="duration"
-                            value={intervention.duration}
+                            name="durationH"
+                            value={intervention.durationH}
                             onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Minuti</label>
+                        <input
+                            type="number"
+                            name="durationM"
+                            value={intervention.durationM}
+                            onChange={handleChange}
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                         />
                     </div>
                 </div>

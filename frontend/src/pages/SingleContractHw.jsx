@@ -111,7 +111,7 @@ export default function SingleContractHw() {
                       className="border-b border-gray-100 hover:bg-gray-50 transition-all duration-200"
                     >
                       <td className="py-4 px-6 text-sm text-gray-600">
-                        {intervention.interventionDate && format(new Date(intervention.interventionDate), 'dd/mm/yyyy')}
+                        {intervention.interventionDate && format(new Date(intervention.interventionDate), 'dd/MM/yyyy')}
                       </td>
                       <td className="py-4 px-6 text-sm text-gray-900 font-medium">
                         {intervention.number}
@@ -126,7 +126,7 @@ export default function SingleContractHw() {
                         </span>
                       </td>
                       <td className="py-4 px-6 text-sm text-gray-600">
-                        {intervention.duration} ore
+                        {Math.floor(intervention.duration / 60)} ore e {intervention.duration % 60} minuti
                       </td>
                       <td className="py-4 px-6 text-sm text-gray-600">
                         {intervention.carriedBy}
