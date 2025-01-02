@@ -45,7 +45,6 @@ export default function Tabs() {
         </ul>
       </div>
       <div className="">
-        <GroupButtons/>
         {tabsData.find(tab => tab.key === activeTab)?.content}
       </div>
     </div>

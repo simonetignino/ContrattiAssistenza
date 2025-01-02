@@ -45,7 +45,8 @@ const contractHwSchema = new mongoose.Schema({
     insertBy: { type: String },
     lastModified: { type: String },
     interventions: [interventionsSchema],
-    interventionsCount: { type: Number, deafult: 0 },
+    interventionsCount: { type: Number, default: 0 },
+    interventionsHoursCount: { type: Number, default: 0 },
     contractType: { type: String, enum: ["Mini", "Standard", "Plus", "Silver", "Gold"] }
 }, { collection: "ContractsHw", timestamps: true })
 
