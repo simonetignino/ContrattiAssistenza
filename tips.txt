@@ -1,0 +1,17 @@
+Per creare un'interfaccia professionale, minimalista ma comunque piacevole e vivace, ti consiglio di optare per una palette che includa:
+
+Colori Primari:
+Blu Acciaio (#3B5998): Evoca affidabilità e sicurezza, ideale per il settore professionale.
+Grigio Chiaro (#F4F4F4): Perfetto come sfondo neutro per le tabelle e i contenuti, evitando che l'interfaccia sembri troppo pesante.
+Colori Secondari:
+Verde Salvia (#6ABF69): Ottimo per evidenziare stati "attivi" o "completi" nei contratti.
+Arancione Sole (#FFAA33): Utile per avvisi o contratti in scadenza, dà un tocco di energia senza risultare aggressivo.
+Accenti:
+Bianco Puro (#FFFFFF): Ideale per contrasto, specialmente nei testi o nelle tabelle.
+Nero Grafite (#333333): Per i testi principali, fornisce leggibilità.
+
+Consigli:
+Testo e Tabelle: Usa un layout ben distanziato con righe alternanti in tonalità leggere di grigio o blu (ad esempio #EAF3FA per le righe dispari).
+Azioni: Colora i pulsanti in base al contesto: verde per "salva", blu per "dettagli", rosso per "elimina".
+Icone: Includi un set di icone intuitive con colori neutri (grigio) che si attivano colorandosi (verde o arancione) al passaggio del mouse.
+Vuoi anche suggerimenti su font e tipografia per completare lo stile?
