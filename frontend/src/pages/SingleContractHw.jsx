@@ -115,7 +115,10 @@ export default function SingleContractHw() {
                         {intervention.interventionDate && format(new Date(intervention.interventionDate), 'dd/MM/yyyy')}
                       </td>
                       <td className="py-4 px-6 text-sm text-gray-900 font-medium">
-                        {intervention.number}
+                        <Link to={`/contracts-hw/${id}/interventions/${intervention._id}`}>
+                          {intervention.letter}/{intervention.number}
+                        </Link>
+                      
                       </td>
                       <td className="py-4 px-6">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${

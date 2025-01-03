@@ -9,6 +9,7 @@ import CreateContract from './pages/CreateContractHw'
 import SingleContractHw from "./pages/SingleContractHw"
 import CreateInterventionsHw from "./pages/CreateInterventionsHw"
 import NavigationButtons from "./components/Buttons/NavigationButtons"
+import SingleIntervention from "./pages/SingleInervent"
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/create" element={<CreateContract/>} />
           <Route path="/contracts-hw/:id/interventions" element={<SingleContractHw/>} />
           <Route path="/contracts-hw/:id/interventions/create" element={<CreateInterventionsHw/>} />
+          <Route path="/contracts-hw/:id/interventions/:interventionId" element={<SingleIntervention/>} />
         </Routes>
       </main>
     </Router>
