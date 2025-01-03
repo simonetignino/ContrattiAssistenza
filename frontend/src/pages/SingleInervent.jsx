@@ -5,7 +5,7 @@ import NavigationButtons from "../components/Buttons/NavigationButtons";
 import { format } from "date-fns";
 
 export default function SingleIntervention() {
-  const { id } = useParams();
+  const { id, interventionId } = useParams();
   const [intervention, setIntervention] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -13,7 +13,7 @@ export default function SingleIntervention() {
     const fetchIntervention = async () => {
       setIsLoading(true);
       try {
-        const response = await getIntervention(id);
+        const response = await getIntervention(id, interventionId);
         setIntervention(response.data);
       } catch (error) {
         console.error("Impossibile trovare l'intervento", error);

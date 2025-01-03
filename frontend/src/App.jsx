@@ -22,7 +22,7 @@ function App() {
           <Route path="/create" element={<CreateContract/>} />
           <Route path="/contracts-hw/:id/interventions" element={<SingleContractHw/>} />
           <Route path="/contracts-hw/:id/interventions/create" element={<CreateInterventionsHw/>} />
-          <Route path="/contracts-hw/:id/interventions/:interventionId" element={<SingleIntervention/>} />
+          <Route path="/contracts-hw/:id/interventions/:interventionId" element={<SingleIntervention />} />
         </Routes>
       </main>
     </Router>
