@@ -18,7 +18,7 @@ export default function CreateContractHw({ contractId = null }) {
     },
     contractType: '',
     contractHours: '',
-    remainingHours: '',
+    remainingHours: 0,
     letter: 'C',
     number: 1,
     endingDuration: '',
@@ -109,7 +109,11 @@ export default function CreateContractHw({ contractId = null }) {
         await updateContract(contractId, contract);
         alert("Contratto aggiornato con successo");
       } else {
-        await createContract(contract);
+        const formattedContract = {
+          ...contract,
+          remainingHours: contract.contractHours * 60
+        }
+        await createContract(formattedContract);
         alert("Contratto creato con successo");
         navigate("/")
       }

@@ -10,3 +10,6 @@
 - Formattare il testo delle ore del contratto
   - Nella tabella, mettere ore e minuti
   
+
+** PROSSIMO STEP:
+- Implementare funzione per aggiornare il contratto con le ore e i minuti corretti

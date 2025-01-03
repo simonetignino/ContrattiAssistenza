@@ -66,8 +66,21 @@ export default function CreateInterventionsHw() {
                 ...intervention,
                 duration: totalMinutes,  // Usiamo i minuti totali
             };
+            const toUpdateContract = {
+                ...contractData,
+                interventionsCount: contractData.interventionsCount +1,
+                interventionsMinsCount: contractData.interventionsMinsCount + totalMinutes,
+                remainingHours: contractData.remainingHours - totalMinutes
+            }
             console.log('URL della richiesta:', `/contracts-hw/${id}/interventions`);
             console.log('Dati intervento formattati:', formattedIntervention);
+            const response = await updateContract (id, toUpdateContract);
+            if(response) {
+                alert("Intervento aggiunto con successo")
+            } else {
+                alert("Impossibile aggiungere l'intervento")
+            }
+            console.log('Dati intervento inviati:', formattedIntervention);
             await createIntervention(id, formattedIntervention);
             // await updateContract(id, updatedContractData);     
             navigate(`/contracts-hw/${id}/interventions`);
@@ -135,22 +148,11 @@ export default function CreateInterventionsHw() {
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Eseguito Da</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Effettuato da</label>
                         <input
                             type="text"
                             name="carriedBy"
                             value={intervention.carriedBy}
-                            onChange={handleChange}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Inserito Da</label>
-                        <input
-                            type="text"
-                            name="insertBy"
-                            value={intervention.insertBy}
                             onChange={handleChange}
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                             required

@@ -151,6 +151,7 @@ router.post("/:id/interventions", async(req, res) => {
         const newIntervention = {
             number: req.body.number,
             letter: req.body.letter,
+            carriedBy: req.body.carriedBy,
             problemEncountered: req.body.problemEncountered,
             interventionCarriedOut: req.body.interventionCarriedOut,
             notes: req.body.notes,

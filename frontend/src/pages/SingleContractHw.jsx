@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import NewInterventiontHw from "../components/Buttons/NewInterventionHw";
 import NavigationButtons from "../components/Buttons/NavigationButtons";
 import { format } from "date-fns";
+import RemainingHours from "../components/RemainingHours";
 
 export default function SingleContractHw() {
   const { id } = useParams();
@@ -71,12 +72,12 @@ export default function SingleContractHw() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">Ore Contratto</p>
-                <p className="text-xl font-semibold text-gray-800">{contract.contractHours}</p>
+                <p className="text-xl font-semibold text-gray-800">{contract.contractHours} ore</p>
               </div>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="text-sm text-gray-600">Ore Rimanenti</p>
-                <p className="text-xl font-semibold text-gray-800">{contract.remainingHours || "N/D"}</p>
-              </div>
+              <RemainingHours 
+                remainingHours={contract.remainingHours} 
+                contractHours={contract.contractHours}
+              />
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">Numero Interventi</p>
                 <p className="text-xl font-semibold text-gray-800">{contract.interventionsCount || 0}</p>

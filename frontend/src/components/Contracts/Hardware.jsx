@@ -70,8 +70,8 @@ export default function Hardware() {
                       {contract.contractType}
                     </span>
                   </td>
-                  <td className="p-4 text-sm text-gray-600">{contract.contractHours}</td>
-                  <td className="p-4 text-sm text-gray-600">{contract.remainingHours}</td>
+                  <td className="p-4 text-sm text-gray-600">{contract.contractHours}h</td>
+                  <td className="p-4 text-sm text-gray-600">{Math.floor(contract.interventionsMinsCount /60)}h e {contract.interventionsMinsCount % 60}m</td>
                   <td className="p-4 text-sm">
                     <Link 
                       to={`/contracts-hw/${contract._id}/interventions`}
