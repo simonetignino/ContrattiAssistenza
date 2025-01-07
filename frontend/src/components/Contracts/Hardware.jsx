@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getContracts } from "../../services/api.js";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import ContractHwTemplate from "../ContractHwTemplate";
 
 export default function Hardware() {
   const [contracts, setContracts] = useState([]);
@@ -23,13 +24,12 @@ export default function Hardware() {
 
   return (
     <div className="bg-white rounded-lg shadow-lg mx-4 my-6">
-      {/* Header della sezione */}
       <div className="px-6 py-4 border-b border-gray-200">
         <div className="flex justify-between items-center">
           <h2 className="text-xl font-semibold text-gray-800">
             Contratti Hardware
           </h2>
-          <Link 
+          <Link
             to="/create"
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors duration-200 flex items-center gap-2"
           >
@@ -38,14 +38,23 @@ export default function Hardware() {
           </Link>
         </div>
       </div>
-
-      {/* Contenuto della tabella */}
+      
       <div className="p-6">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="bg-gray-50">
-                {["Cliente", "Indirizzo", "Tipo Contratto", "Ore Contratto", "Ore Rimanenti", "Numero Contratto", "Scadenza", "N° Interventi"].map((header, index) => (
+                {[
+                  "Cliente",
+                  "Indirizzo",
+                  "Tipo Contratto",
+                  "Ore Contratto",
+                  "Ore Rimanenti",
+                  "Numero Contratto",
+                  "Scadenza",
+                  "N° Interventi",
+                  "Azioni"  // Nuova colonna
+                ].map((header, index) => (
                   <th key={index} className="text-left p-4 text-sm font-medium text-gray-600 border-b border-gray-200">
                     {header}
                   </th>
@@ -54,8 +63,8 @@ export default function Hardware() {
             </thead>
             <tbody>
               {contracts.map((contract, index) => (
-                <tr 
-                  key={contract.id || index} 
+                <tr
+                  key={contract.id || index}
                   className="border-b border-gray-100 hover:bg-gray-50 transition-all duration-200"
                 >
                   <td className="p-4 text-sm text-gray-600">{contract.holder.name}</td>
@@ -71,9 +80,11 @@ export default function Hardware() {
                     </span>
                   </td>
                   <td className="p-4 text-sm text-gray-600">{contract.contractHours}h</td>
-                  <td className="p-4 text-sm text-gray-600">{Math.floor(contract.interventionsMinsCount /60)}h e {contract.interventionsMinsCount % 60}m</td>
+                  <td className="p-4 text-sm text-gray-600">
+                    {Math.floor(contract.interventionsMinsCount / 60)}h e {contract.interventionsMinsCount % 60}m
+                  </td>
                   <td className="p-4 text-sm">
-                    <Link 
+                    <Link
                       to={`/contracts-hw/${contract._id}/interventions`}
                       className="text-blue-600 hover:text-blue-800 transition-colors duration-200"
                     >
@@ -87,6 +98,14 @@ export default function Hardware() {
                     <span className="bg-gray-100 px-2 py-1 rounded-full">
                       {contract.interventionsCount}
                     </span>
+                  </td>
+                  <td className="p-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <ContractHwTemplate 
+                        clientData={contract.holder}
+                        selectedPlan={contract.contractType}
+                      />
+                    </div>
                   </td>
                 </tr>
               ))}

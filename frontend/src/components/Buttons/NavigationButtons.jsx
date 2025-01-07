@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, House } from "lucide-react";
 
 export default function NavigationButtons() {
    const navigate = useNavigate();
@@ -12,6 +12,12 @@ export default function NavigationButtons() {
            >
                <ArrowLeft className="w-4 h-4 mr-1" />
                Indietro
+           </button>
+           <button 
+               onClick={() => navigate("/#")}
+               className="flex items-center text-red-500 hover:text-red-700 transition-colors"
+           >
+               <House />
            </button>
            <button 
                onClick={() => navigate(1)}

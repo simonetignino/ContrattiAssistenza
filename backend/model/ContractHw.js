@@ -47,7 +47,8 @@ const contractHwSchema = new mongoose.Schema({
     interventions: [interventionsSchema],
     interventionsCount: { type: Number, default: 0 },
     interventionsMinsCount: { type: Number, default: 0 },
-    contractType: { type: String, enum: ["Mini", "Standard", "Plus", "Silver", "Gold"] }
+    contractType: { type: String, enum: ["Mini", "Standard", "Plus", "Silver", "Gold"], default: "Standard" },
+    status: { type: String, enum: ["In corso", "In attesa", "In scadenza"], default: "In attesa" }
 }, { collection: "ContractsHw", timestamps: true })
 
 export default mongoose.model("ContractHw", contractHwSchema)
