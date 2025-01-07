@@ -81,7 +81,7 @@ export default function Hardware() {
                   </td>
                   <td className="p-4 text-sm text-gray-600">{contract.contractHours}h</td>
                   <td className="p-4 text-sm text-gray-600">
-                    {Math.floor(contract.interventionsMinsCount / 60)}h e {contract.interventionsMinsCount % 60}m
+                    {Math.floor(contract.remainingHours / 60)}h e {contract.remainingHours % 60}m
                   </td>
                   <td className="p-4 text-sm">
                     <Link

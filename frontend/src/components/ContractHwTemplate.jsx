@@ -2,6 +2,7 @@ import React from 'react';
 import { Printer } from 'lucide-react';
 
 const ContractHwTemplate = ({ clientData, selectedPlan }) => {
+
   const generateContract = () => {
     const contractTemplate = `
       <!DOCTYPE html>
@@ -65,9 +66,15 @@ const ContractHwTemplate = ({ clientData, selectedPlan }) => {
               height: 12px;
               border: 1px solid black;
               margin-right: 5px;
+              position: relative;
             }
-            .checked {
-              background-color: black;
+            .checkbox.checked::after {
+              content: "✓";
+              position: absolute;
+              top: -3px;
+              left: 1px;
+              font-size: 12px;
+              color: black;
             }
             @media print {
               .no-print {
@@ -78,7 +85,7 @@ const ContractHwTemplate = ({ clientData, selectedPlan }) => {
         </head>
         <body>
           <div class="header">
-            <img src="/logo-smart.png" alt="Smart SRL Logo" />
+            <img src="/logo.png" alt="Smart SRL Logo" />
             <div class="title">CONDIZIONI GENERALI<br/>CONTRATTO DI MANUTENZIONE E ASSISTENZA TECNICA</div>
           </div>
 
@@ -134,17 +141,17 @@ const ContractHwTemplate = ({ clientData, selectedPlan }) => {
           <div class="contract-section">
             <p class="section-title">8. CORRISPETTIVO</p>
             <div class="subsection">
-              <p>8.3 Formule di contratto: </p>
+              <p>8.3 Formule di contratto: ${selectedPlan}</p>
               <div class="checkbox-area">
-                <span class="checkbox ${selectedPlan === 'MINI' ? 'checked' : ''}"></span>
+                <span class="checkbox ${selectedPlan === "Mini" ? "checked" : ""}"></span>
                 Contratto MINI € 290,00 + iva 12 mesi<br/>
-                <span class="checkbox ${selectedPlan === 'Standard' ? 'checked' : ''}"></span>
+                <span class="checkbox ${selectedPlan === "Standard" ? "checked" : ""}"></span>
                 Contratto STANDARD € 490,00 + iva 12 mesi<br/>
-                <span class="checkbox ${selectedPlan === 'Plus' ? 'checked' : ''}"></span>
+                <span class="checkbox ${selectedPlan === "Plus" ? "checked" : ""}"></span>
                 Contratto PLUS € 890,00 + iva 12 mesi<br/>
-                <span class="checkbox ${selectedPlan === 'Silver' ? 'checked' : ''}"></span>
+                <span class="checkbox ${selectedPlan === "Silver" ? "checked" : ""}"></span>
                 Contratto SILVER € 1.390,00 + iva 12 mesi<br/>
-                <span class="checkbox ${selectedPlan === 'Gold' ? 'checked' : ''}"></span>
+                <span class="checkbox ${selectedPlan === "Gold" ? "checked" : ""}"></span>
                 Contratto GOLD a partire da € 2.990,00 + iva 12 mesi
               </div>
             </div>
