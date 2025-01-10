@@ -41,7 +41,7 @@ export default function SingleIntervention() {
             <div className="flex justify-between items-start mb-4">
               <div>
                 <h2 className="text-2xl font-semibold text-gray-800">
-                  Intervento #{intervention.number}{intervention.letter}
+                  Intervento {intervention.letter}/{intervention.number}
                 </h2>
                 <p className="text-gray-600 mt-1">
                   Eseguito da: {intervention.carriedBy}
@@ -131,11 +131,6 @@ export default function SingleIntervention() {
                 </div>
               )}
             </div>
-          </div>
-
-          {/* Footer con navigazione */}
-          <div className="border-t border-gray-200 px-6 py-4">
-            <NavigationButtons />
           </div>
         </div>
       </div>

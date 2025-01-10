@@ -28,7 +28,8 @@ export default function CreateContractHw({ contractId = null }) {
     contractDuration: '',
     remainingDuration: '',
     insertBy: '',
-    lastModified: ''
+    lastModified: '',
+    status:''
   });
 
   const navigate = useNavigate();
@@ -109,17 +110,31 @@ export default function CreateContractHw({ contractId = null }) {
         await updateContract(contractId, contract);
         alert("Contratto aggiornato con successo");
       } else {
+        // Prepara i dati del contratto
         const formattedContract = {
           ...contract,
-          remainingHours: contract.contractHours * 60
-        }
-        await createContract(formattedContract);
+          remainingHours: contract.contractHours * 60,
+          insertBy: 'system',  // O qualsiasi valore di default appropriato
+          lastModified: new Date().toISOString(),
+          // Rimuovi i campi undefined o vuoti
+          signedContract: contract.signedContract || null,
+          annualAmount: contract.annualAmount || null,
+          contractDuration: contract.contractDuration || null,
+          remainingDuration: contract.remainingDuration || null
+        };
+  
+        // Log per debug
+        console.log('Contratto da inviare:', formattedContract);
+        
+        const response = await createContract(formattedContract);
+        console.log('Risposta dal server:', response);
+        
         alert("Contratto creato con successo");
-        navigate("/")
+        navigate("/");
       }
     } catch (error) {
-      console.error("Errore nel salvare il contratto");
-      alert("Errore nel salvare il contratto");
+      console.error("Errore nel salvare il contratto:", error.response?.data || error.message);
+      alert(`Errore nel salvare il contratto: ${error.response?.data?.message || 'Errore sconosciuto'}`);
     }
   };
 
@@ -372,6 +387,22 @@ export default function CreateContractHw({ contractId = null }) {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                     required
                   />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">
+                    Status contratto
+                  </label>
+                  <select
+                    name="status"
+                    value={contract.status}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                    required
+                  >
+                    <option value="In corso">In corso</option>
+                    <option value="In attesa">In attesa</option>
+                    <option value="In scadenza">In scadenza</option>
+                  </select>
                 </div>
               </div>
             </div>

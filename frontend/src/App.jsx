@@ -5,15 +5,15 @@ import Home from './pages/Home'
 import CreateContract from './pages/CreateContractHw'
 import SingleContractHw from "./pages/SingleContractHw"
 import CreateInterventionsHw from "./pages/CreateInterventionsHw"
-import NavigationButtons from "./components/Buttons/NavigationButtons"
-import SingleIntervention from "./pages/SingleInervent"
+import SingleIntervention from "./pages/SingleInervention"
+import Navbar from "./components/Navbar"
 
 function App() {
 
   return (
     <Router>
       <main className='container mx-auto max-w-full'>
-        <NavigationButtons />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/create" element={<CreateContract/>} />
